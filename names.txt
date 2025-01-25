@@ -1,0 +1,370 @@
+% Supplies
+121 1 1 Soldier Supplies
+146 1 1 Maintenance Supplies
+
+% Arms
+139 1 1 Basic Materials
+141 1 1 Explosive Powder
+144 1 1 Heavy Explosive Powder
+147 1 1 Refined Materials
+
+028 1 1 7.62mm
+025 1 1 No.2 Loughcaster
+021 1 1 Blakerow 871
+017 1 1 Sampo Auto-Rifle 77
+023 1 1 Clancy Cinder M3
+024 1 1 No.2B Hawthorne
+027 1 1 Clancy-Raca M4
+
+036 1 1 9mm
+034 1 1 No.1 "The Liar" Submachine Gun
+035 1 1 Fiddler Submachine Gun Model 868
+
+003 1 1 7.92mm
+001 1 1 Booker Storm Rifle Model 838
+002 1 1 Aalto Storm Rifle 24
+
+059 1 1 12.7mm
+006 1 1 Malone MK.2
+058 1 1 Malone Ratcatcher MK.1
+
+070 1 1 Mammon 91-b
+055 1 1 PT-815 Smoke Grenade
+071 1 1 Anti-Tank Sticky Bomb
+056 1 1 Green Ash Grenade
+008 1 1 A3 Harpa Fragmentation Grenade
+067 1 1 BF5 White Ash Flask Grenade
+068 1 1 B2 Varsi Anti-Tank Grenade
+
+043 1 1 20mm
+038 1 1 Booker Greyhound Model 910
+042 1 1 20 Neville Anti-Tank Rifle
+037 1 1 228 Satterley Heavy Storm Rifle
+
+066 1 1 Mortar Shell
+065 1 1 Shrapnel Mortar Shell
+064 1 1 Flare Mortar Shell
+063 1 1 Incendiary Mortar Shell
+062 1 1 Cremari Mortar
+
+061 1 1 30mm
+074 1 1 RPG
+073 1 1 Cutler Launcher 4
+072 1 1 Cutler Foebreaker
+054 1 1 Tremola Grenade GPb-1
+
+049 1 1 ARC/RPG
+048 1 1 Bonesaw MK.3
+047 1 1 Mounted Bonesaw MK.3
+
+093 1 1 Willow's Bane Ammo
+051 1 1 Willow's Bane Model 845
+
+086 1 1 40mm
+085 1 1 68mm
+076 1 1 75mm
+075 1 1 94.5mm
+082 1 1 120mm
+080 1 1 150mm
+083 1 1 300mm
+084 1 1 250mm
+079 1 1 Flame Ammo
+081 1 1 3C-High Explosive Rocket
+078 1 1 4C-Fire Rocket
+077 1 1 Model-7 "Evie"
+
+094 1 1 Crow's Foot Mine
+105 1 1 Abisme AT-99
+107 1 1 E680-S Rudder Lock
+
+087 1 1 Barbed Wire
+099 1 1 Sandbag
+097 1 1 Metal Beam
+
+102 1 1 Shovel
+110 1 1 Wrench
+103 1 1 Sledge Hammer
+088 1 1 Buckhorn CCQ-18
+116 1 1 Radio
+098 1 1 Radio Backpack
+089 1 1 Binoculars
+112 1 1 Water
+111 1 1 Water Bucket
+106 1 1 Tripod
+108 1 1 Wind Sock
+095 1 1 Listening Kit
+113 1 1 Gas Mask
+114 1 1 Gas Mask Filter
+096 1 1 Falias Raiding Club
+115 1 1 The Ospreay
+
+117 1 1 Bandages
+118 1 1 First Aid Kit
+120 1 1 Blood Plasma
+119 1 1 Trauma Kit
+
+091 1 1 Havoc Charge
+100 1 1 Havoc Charge Detonator
+101 1 1 Alligator Charge
+
+162 1 1 Caoivish Parka
+155 1 1 Physician's Jacket
+152 1 1 Sapper Gear
+150 1 1 Gunner's Breastplate
+148 1 1 Specialist's Overcoat
+160 1 1 Outrider's Mantle
+157 1 1 Officer's Regalia
+166 1 1 Padded Boiler Suit
+
+010 1 1 Cascadier 873
+
+015 1 1 .44
+013 1 1 Cometa T2-9
+014 1 1 The Hangman 757
+
+031 1 1 Buckshot
+030 1 1 No.4 The Pillory Scattergun
+
+142 1 0 Construction Materials
+125 1 0 Processed Construction Materials
+127 1 0 Assembly Materials I
+128 1 0 Assembly Materials II
+129 1 0 Assembly Materials III
+130 1 0 Assembly Materials IV
+131 1 0 Assembly Materials V
+126 1 0 Steel Construction Materials
+132 1 0 Rare Alloys
+124 1 0 Thermal Shielding
+123 1 0 Unstable Substances
+137 1 0 Pipe
+
+135 1 0 Oil
+122 1 1 Diesel
+136 1 1 Petrol
+133 1 0 Heavy Oil
+134 1 0 Enriched Oil
+
+138 1 0 Aluminum Alloy
+145 1 0 Iron Alloy
+140 1 0 Copper Alloy
+
+303 0 0 Concrete Materials
+298 0 0 Wreckage
+288 0 0 Aluminum
+294 0 0 Iron
+291 0 0 Copper
+
+295 0 0 Salvage
+289 0 0 Coal
+292 0 0 Coke
+143 1 0 Gravel
+297 0 0 Sulfur
+293 0 0 Damaged Components
+290 0 0 Components
+296 0 0 Rare Metal
+
+109 1 0 Hammer
+011 1 0 Ahti Model 2
+012 1 0 8mm
+164 1 0 Infantry Battledress
+
+018 1 0 Argenti r.II Rifle
+016 1 0 Catena rt.IV Auto-Rifle
+019 1 0 Volta r.I Repeater
+020 1 0 Fuscina pi.I
+022 1 0 KRR2-790 Omen
+026 1 0 KRR3-792 Auger
+
+029 1 0 KRF1-750 Dragonfly
+
+009 1 0 Ferro 879
+
+032 1 0 "The Pitch Gun" mc.V
+033 1 0 "Lionclaw" mc.VIII
+
+000 1 0 "Dusk" ce.III
+
+004 1 0 Catara mo.II
+005 1 0 KRN886-127 Gast Machine Gun
+057 1 0 Lamentum mm.IV
+
+007 1 0 Bomastone Grenade
+069 1 0 Ignifist 30
+
+039 1 0 "Dawn" Ve.II
+040 1 0 "Quickhatch" Rt.I
+041 1 0 "Typhon" ra.XII
+
+052 1 0 KLG901-2 Lunaire F
+053 1 0 Mounted Fissura gd.
+
+060 1 0 Daucus isg.III
+
+046 1 0 AP/RPG
+044 1 0 Venom c.II 35
+045 1 0 Bane 45
+
+092 1 0 "Molten Wind" v.II Ammo
+050 1 0 "Molten Wind" v.II Flame Torch
+
+104 1 0 Eleos Infantry Dagger
+
+090 1 0 Hydra's Whisper
+
+163 1 0 Legionary Fatigues
+158 1 0 Legionary's Oilcoat
+161 1 0 Heavy Topcoat
+154 1 0 Medic Fatigues
+151 1 0 Fabri Rucksack
+149 1 0 Velian Flak Vest
+153 1 0 Grenadier's Baldric
+159 1 0 Recon Camo
+156 1 0 Officialis' Attire
+165 1 0 Tankman's Coveralls
+
+> Vehicles
+186 1 1 Noble Widow MK. XIV
+185 0 1 Noble Firebrand Mk. XVII
+237 1 1 Silverhand - Mk. IV
+236 0 1 Silverhand Chieftain - Mk. VI
+232 0 1 Silverhand Lordscar - Mk. X
+230 1 1 Gallagher Brigand Mk. I
+228 0 1 Gallagher Outlaw Mk. II
+227 0 1 Gallagher Highwayman Mk. III
+226 0 1 Gallagher Thornfall Mk. VI
+223 1 1 Devitt Mk. III
+219 0 1 Devitt Ironhide Mk. IV
+217 0 1 Devitt-Caine Mk. IV MMR
+
+196 1 1 Balfour Falconer 250mm
+213 0 1 Balfour Stockade 75mm
+190 0 1 Balfour Rampart 68mm
+191 1 1 Collins Cannon 68mm
+193 1 1 Balfour Wolfhound 40mm
+188 0 1 Duncan's Coin 20mm
+195 1 1 Swallowtail 988/127-2
+215 0 1 Rycker 4/3-F Wasp Nest
+
+208 0 1 Cnute Cliffwrest
+266 1 1 Dunne Transport
+257 0 1 Dunne Leatherback 2a
+261 0 1 Dunne Landrunner 12c
+265 1 1 Dunne Loadlugger 3c
+259 1 1 Dunne Fuelrunner 2d
+170 1 1 Dunne Responder 3e
+169 0 1 Dunne Dousing Engine 3r
+181 1 1 Dunne Caravaner 2f
+
+251 1 1 Drummond 100a
+250 0 1 Drummond Loscann 55c
+248 0 1 Drummond Spitfire 100d
+241 1 1 Kivela Power Wheel 80-1
+
+205 1 1 Niska Mk. I Gun Motor Carriage
+204 0 1 Niska Mk. III Scar Twin
+203 0 1 Niska Mk. II Blinder
+202 0 1 Niska-Rycker Mk. IX Skycaller
+
+245 1 1 King Spire Mk. I
+244 0 1 King Gallant Mk. II
+243 0 1 King Jester - Mk. I-1
+172 1 1 O'Brien V.190 Knave
+171 0 1 O'Brien V.101 Freeman
+179 1 1 O'Brien V.110
+173 0 1 O'Brien V.113 Gravekeeper
+175 0 1 O'Brien V.130 Wild Jack
+176 0 1 O'Brien V.121 Highlander
+
+302 1 1 74b-1 Ronan Gunship
+211 1 1 Mulloy LPC
+
+197 1 1 BMS - Packmule Flatbed
+206 0 1 BMS - Scrap Hauler
+182 1 1 BMS - Universal Assembly Rig
+183 0 1 BMS - Fabricator
+184 1 1 BMS - Class 2 Mobile Auto-Crane
+300 1 1 BMS - Ironship
+299 1 1 BMS - Aquatipper
+242 1 1 Rooster - Junkwagon
+224 0 1 Rooster - Tumblebox
+198 0 1 Rooster - Lamploader
+
+225 1 0 86K-a "Bardiche"
+229 0 0 86K-c "Ranseur"
+231 1 0 90T-v "Nemesis"
+233 1 0 85K-b "Falchion"
+235 0 0 85K-a "Spatha"
+234 0 0 85V-g "Talos"
+216 1 0 HC-2 "Scorpion"
+238 0 0 HC-7 "Ballista"
+218 1 0 H-5 "Hatchet"
+221 0 0 H-8 "Kranesca"
+220 0 0 H-19 "Vulcan"
+222 0 0 H-10 "Pelekys"
+
+212 0 0 945g "Stygian Bolt"
+192 0 0 40-45 "Smelter" Heavy Field Gun
+189 1 0 AA-2 Battering Ram
+187 0 0 GA6 "Cestus"
+194 1 0 G40 "Sagittarii"
+214 1 0 120-68 "Koronides" Field Gun
+
+207 0 0 AU-A150 Taurine Rigger
+256 1 0 R-1 Hauler
+263 0 0 R-9 "Speartip" Escort
+260 0 0 R-5b "Sisyphus" Hauler
+264 1 0 R-5 "Atlas" Hauler
+258 1 0 RR-3 "Stolon" Tanker
+167 1 0 R-12 - "Salus" Ambulance
+168 0 0 R-12b - "Salva" Flame Truck
+262 0 0 R-17 "Retiarius" Skirmisher
+180 1 0 R-15 - "Chariot"
+
+246 1 0 UV-05a "Argonaut"
+249 0 0 UV-5c "Odyssey"
+247 0 0 UV-24 "Icarus"
+240 0 0 00MS "Stinger"
+239 1 0 03MM "Caster"
+
+200 1 0 HH-a "Javelin"
+201 0 0 HH-b "Hoplite"
+199 0 0 HH-d "Peltast"
+
+252 1 0 T12 "Actaeon" Tankette
+255 0 0 T20 "Ixion" Tankette
+253 0 0 T14 "Vesta" Tankette
+254 0 0 T13 "Deioneus" Rocket Battery
+174 1 0 T3 "Xiphos"
+177 0 0 T5 "Percutio"
+178 0 0 T8 "Gemini"
+
+301 1 0 Type C - "Charon"
+209 1 0 AB-8 "Acheron"
+210 0 0 AB-11 "Doru"
+
+> Shippables
+275 1 1 Leary Snare Trap 127
+268 0 1 Huber Starbreaker 94.5mm
+269 1 1 Leary Shellbore 68mm
+276 1 1 Huber Lariat 120mm
+272 1 1 Huber Exalt 150mm
+
+280 1 1 Resource Container
+279 1 1 Material Pallet
+278 1 1 Liquid Container
+287 1 1 Shipping Container
+267 1 1 Concrete Mixer
+
+284 0 1 Naval Hull Segments
+285 0 1 Naval Shell Plating
+286 0 1 Naval Turbine Components
+
+281 0 0 A0E-9 Rocket Booster
+282 0 0 A0E-9 Rocket Body
+283 0 0 A0E-9 Rocket Warhead
+
+274 1 0 DAE 1b-2 "Serra"
+273 1 0 DAE 1o-3 "Polybolos"
+270 0 0 DAE 2a-1 "Ruptura"
+271 1 0 50-500 "Thunderbolt" Cannon
+277 0 0 DAE 3b-2 "Hades' Net"
