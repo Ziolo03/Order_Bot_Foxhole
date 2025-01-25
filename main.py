@@ -187,6 +187,39 @@ async def add_product(interaction: discord.Interaction, product_name: str, quant
     await update_order_status_message(interaction.channel, order_id)
     await interaction.response.send_message(f"Produkt '{product_name}' został dodany do zamówienia.", ephemeral=True)
 
+@bot.tree.command(name="zamówienie_aktualizuj_produkt", description="Aktualizuje stan produktu w zamówieniu.")
+@app_commands.autocomplete(product_name=product_name_autocomplete)
+async def update_product(interaction: discord.Interaction, product_name: str, progress: int):
+    thread_id = interaction.channel.id
+    order_id = get_order_id_from_thread(thread_id)
+
+    if not order_id:
+        await interaction.response.send_message("Nie znaleziono zamówienia dla tego wątku.", ephemeral=True)
+        return
+
+    cursor.execute(
+        "SELECT id, quantity, progress FROM order_items WHERE order_id = %s AND product_name = %s AND completed = FALSE;",
+        (order_id, product_name)
+    )
+    item = cursor.fetchone()
+
+    if not item:
+        await interaction.response.send_message(f"Produkt '{product_name}' nie istnieje lub jest już ukończony.", ephemeral=True)
+        return
+
+    product_id, quantity, current_progress = item
+    new_progress = current_progress + progress
+
+    if new_progress >= quantity:
+        cursor.execute("UPDATE order_items SET progress = %s, completed = TRUE WHERE id = %s;", (quantity, product_id))
+        conn.commit()
+        await interaction.response.send_message(f"Produkt '{product_name}' został ukończony! ({quantity}/{quantity})", ephemeral=True)
+    else:
+        cursor.execute("UPDATE order_items SET progress = %s WHERE id = %s;", (new_progress, product_id))
+        conn.commit()
+        await interaction.response.send_message(f"Zaktualizowano stan produktu '{product_name}': {new_progress}/{quantity}.", ephemeral=True)
+
+    await update_order_status_message(interaction.channel, order_id)
 
 @bot.tree.command(name="zamówienie_usuń_produkt", description="Usuwa produkt z zamówienia w bieżącym wątku.")
 @app_commands.autocomplete(product_name=product_name_autocomplete)
