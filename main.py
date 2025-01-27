@@ -18,7 +18,7 @@ bot = BotClient()
 conn = psycopg2.connect(
     dbname="DBNAME",
     user="USER",
-    password="USER",
+    password="PASSWORD",
     host="HOST",
     port="PORT"
 )
@@ -85,7 +85,7 @@ async def get_order_details(order_id: int) -> str:
 
     if items:
         item_list = [
-            f"{product_name}: {'✅' if completed else f'{progress}/{quantity}'}"
+            f"{product_name}: {f'{progress}''/'f'{quantity}''✅' if completed else f'{progress}/{quantity}'}"
             for product_name, quantity, progress, completed in items
         ]
         return f"""
@@ -160,6 +160,15 @@ async def create_order(interaction: discord.Interaction):
 @bot.tree.command(name="zamówienie_dodaj_produkt", description="Dodaje produkt do zamówienia w bieżącym wątku.")
 @app_commands.autocomplete(product_name=product_name_autocomplete_add)
 async def add_product(interaction: discord.Interaction, product_name: str, quantity: int):
+    if quantity <= 0:
+        await interaction.response.send_message("Ilość produktu musi byćwiększa od zera.",ephemeral=True)
+        return
+    if not (-2_147_483_648 <= quantity <= 2_147_483_647):
+        await interaction.response.send_message(
+            "Ilość produktu przekracza dopuszczalny zakres liczb całkowitych.", ephemeral=True
+        )
+        return
+    
     thread_id = interaction.channel.id
     order_id = get_order_id_from_thread(thread_id)
 
@@ -187,6 +196,90 @@ async def add_product(interaction: discord.Interaction, product_name: str, quant
     await update_order_status_message(interaction.channel, order_id)
     await interaction.response.send_message(f"Produkt '{product_name}' został dodany do zamówienia.", ephemeral=True)
 
+@bot.tree.command(name="zamówienie_aktualizuj_produkt", description="Aktualizuje stan produktu w zamówieniu.")
+@app_commands.autocomplete(product_name=product_name_autocomplete)
+async def update_product(interaction: discord.Interaction, product_name: str, progress: int):
+    if progress <= 0:
+        await interaction.response.send_message("Ilość produktu musi byćwiększa od zera.",ephemeral=True)
+        return
+    if not (-2_147_483_648 <= progress <= 2_147_483_647):
+        await interaction.response.send_message(
+            "Ilość produktu przekracza dopuszczalny zakres liczb całkowitych.", ephemeral=True
+        )
+        return
+    
+    thread_id = interaction.channel.id
+    order_id = get_order_id_from_thread(thread_id)
+
+    if not order_id:
+        await interaction.response.send_message("Nie znaleziono zamówienia dla tego wątku.", ephemeral=True)
+        return
+
+    cursor.execute(
+        "SELECT id, quantity, progress FROM order_items WHERE order_id = %s AND product_name = %s AND completed = FALSE;",
+        (order_id, product_name)
+    )
+    item = cursor.fetchone()
+
+    if not item:
+        await interaction.response.send_message(f"Produkt '{product_name}' nie istnieje lub jest już ukończony.", ephemeral=True)
+        return
+
+    product_id, quantity, current_progress = item
+    new_progress = current_progress + progress
+
+    if new_progress >= quantity:
+        cursor.execute("UPDATE order_items SET progress = %s, completed = TRUE WHERE id = %s;", (quantity, product_id))
+        conn.commit()
+        if product_name in product_names:
+            product_names.remove(product_name)
+        await interaction.response.send_message(f"Produkt '{product_name}' został ukończony! ({quantity}/{quantity})", ephemeral=False)
+    else:
+        cursor.execute("UPDATE order_items SET progress = %s WHERE id = %s;", (new_progress, product_id))
+        conn.commit()
+        await interaction.response.send_message(f"Zaktualizowano stan produktu '{product_name}': {new_progress}/{quantity}.", ephemeral=False)
+
+    await update_order_status_message(interaction.channel, order_id)
+
+@bot.tree.command(name="zamówienie_popraw", description="Aktualizuje zażądaną ilość produktu w zamówieniu.")
+@app_commands.autocomplete(product_name=product_name_autocomplete)
+async def update_quantity(interaction: discord.Interaction, product_name: str, quantity: int):
+    if quantity <= 0:
+        await interaction.response.send_message("Ilość produktu musi być większa od zera.", ephemeral=True)
+        return
+    if not (-2_147_483_648 <= quantity <= 2_147_483_647):
+        await interaction.response.send_message(
+            "Ilość produktu przekracza dopuszczalny zakres liczb całkowitych.", ephemeral=True
+        )
+        return
+
+    thread_id = interaction.channel.id
+    order_id = get_order_id_from_thread(thread_id)
+
+    if not order_id:
+        await interaction.response.send_message("Nie znaleziono zamówienia dla tego wątku.", ephemeral=True)
+        return
+
+    cursor.execute(
+        "SELECT id, quantity, progress FROM order_items WHERE order_id = %s AND product_name = %s AND completed = FALSE;",
+        (order_id, product_name)
+    )
+
+    item = cursor.fetchone()
+
+    if not item:
+        await interaction.response.send_message(f"Produkt '{product_name}' nie istnieje lub jest już ukończony.", ephemeral=True)
+        return
+
+    product_id, current_quantity, _ = item  
+
+    new_quantity = quantity + current_quantity
+    cursor.execute("UPDATE order_items SET quantity = %s WHERE id = %s;", (new_quantity, product_id))
+    conn.commit()
+
+    await interaction.response.send_message(f"Zaktualizowano zażądaną ilość produktu '{product_name}'.")
+
+    await update_order_status_message(interaction.channel, order_id)
 
 @bot.tree.command(name="zamówienie_usuń_produkt", description="Usuwa produkt z zamówienia w bieżącym wątku.")
 @app_commands.autocomplete(product_name=product_name_autocomplete)
@@ -208,6 +301,8 @@ async def delete_product(interaction: discord.Interaction, product_name: str):
 
     cursor.execute("DELETE FROM order_items WHERE order_id = %s AND product_name = %s;", (order_id, product_name))
     conn.commit()
+    if product_name in product_names:
+        product_names.remove(product_name)
 
     await update_order_status_message(interaction.channel, order_id)
     await interaction.response.send_message(f"Produkt '{product_name}' został usunięty z zamówienia.", ephemeral=True)
@@ -252,10 +347,7 @@ async def complete_order(interaction: discord.Interaction):
         await interaction.response.send_message("Zamówienie jest już zakończone.", ephemeral=True)
         return
 
-    cursor.execute("DELETE FROM orders WHERE id = %s;", (order_id,))
-    conn.commit()
-
-    await interaction.response.send_message("Zamówienie zostało oznaczone jako zakończone i usunięte z bazy danych.", ephemeral=True)
+    await interaction.response.send_message("Zamówienie zostało oznaczone jako zakończone.", ephemeral=False)
 
 
 @bot.event
@@ -264,5 +356,5 @@ async def on_ready():
 
 
 
-token = "YOUR_TOKEN"
+token = ""
 bot.run(token)
