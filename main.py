@@ -1,7 +1,22 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
+from dotenv import load_dotenv
+import os
 import psycopg2
+
+
+
+load_dotenv()
+
+
+token = os.getenv("DISCORD_TOKEN")
+db_name = os.getenv("DBNAME")
+db_user = os.getenv("USER")
+db_password = os.getenv("PASSWORD")
+db_host = os.getenv("HOST")
+db_port = os.getenv("PORT")
+
 
 
 class BotClient(commands.Bot):
@@ -16,13 +31,14 @@ class BotClient(commands.Bot):
 bot = BotClient()
 
 conn = psycopg2.connect(
-    dbname="DBNAME",
-    user="USER",
-    password="PASSWORD",
-    host="HOST",
-    port="PORT"
+    dbname=db_name,
+    user=db_user,
+    password=db_password,
+    host=db_host,
+    port=db_port
 )
 cursor = conn.cursor()
+
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS orders (
@@ -355,6 +371,4 @@ async def on_ready():
     print(f"Bot gotowy! Zalogowano jako {bot.user}")
 
 
-
-token = ""
 bot.run(token)
