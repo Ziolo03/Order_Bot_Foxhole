@@ -242,13 +242,11 @@ async def update_product(interaction: discord.Interaction, product_name: str, pr
         return
 
     product_id, quantity, current_progress = item
-    new_progress = current_progress + progress
+    new_progress = progress
 
     if new_progress >= quantity:
         cursor.execute("UPDATE order_items SET progress = %s, completed = TRUE WHERE id = %s;", (quantity, product_id))
         conn.commit()
-        if product_name in product_names:
-            product_names.remove(product_name)
         await interaction.response.send_message(f"Produkt '{product_name}' został ukończony! ({quantity}/{quantity})", ephemeral=False)
     else:
         cursor.execute("UPDATE order_items SET progress = %s WHERE id = %s;", (new_progress, product_id))
@@ -277,23 +275,26 @@ async def update_quantity(interaction: discord.Interaction, product_name: str, q
         return
 
     cursor.execute(
-        "SELECT id, quantity, progress FROM order_items WHERE order_id = %s AND product_name = %s AND completed = FALSE;",
+        "SELECT id, quantity FROM order_items WHERE order_id = %s AND product_name = %s;",
         (order_id, product_name)
     )
 
     item = cursor.fetchone()
 
     if not item:
-        await interaction.response.send_message(f"Produkt '{product_name}' nie istnieje lub jest już ukończony.", ephemeral=True)
+        await interaction.response.send_message(f"Produkt '{product_name}' nie istnieje w zamówieniu.", ephemeral=True)
         return
 
-    product_id, current_quantity, _ = item  
+    product_id, current_quantity = item  
 
-    new_quantity = quantity + current_quantity
-    cursor.execute("UPDATE order_items SET quantity = %s WHERE id = %s;", (new_quantity, product_id))
+    new_quantity = quantity
+    cursor.execute(
+        "UPDATE order_items SET quantity = %s, completed = FALSE WHERE id = %s;", 
+        (new_quantity, product_id)
+    )
     conn.commit()
 
-    await interaction.response.send_message(f"Zaktualizowano zażądaną ilość produktu '{product_name}'.")
+    await interaction.response.send_message(f"Zaktualizowano zażądaną ilość produktu '{product_name}'.", ephemeral=False)
 
     await update_order_status_message(interaction.channel, order_id)
 
